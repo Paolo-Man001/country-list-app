@@ -1,8 +1,10 @@
-package com.paolomanlunas.countriesapp;
+package com.paolomanlunas.countriesapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.paolomanlunas.countriesapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
