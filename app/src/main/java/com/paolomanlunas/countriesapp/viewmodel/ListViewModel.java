@@ -35,6 +35,14 @@ public class ListViewModel extends ViewModel {
       list.add(new CountryModel("Brazil", "Brasilia", ""));
       list.add(new CountryModel("Czech Republic", "Prague", ""));
       list.add(new CountryModel("Denmark", "Copenhagen", ""));
+      list.add(new CountryModel("Albania", "Tirana", ""));
+      list.add(new CountryModel("Brazil", "Brasilia", ""));
+      list.add(new CountryModel("Czech Republic", "Prague", ""));
+      list.add(new CountryModel("Denmark", "Copenhagen", ""));
+      list.add(new CountryModel("Albania", "Tirana", ""));
+      list.add(new CountryModel("Brazil", "Brasilia", ""));
+      list.add(new CountryModel("Czech Republic", "Prague", ""));
+      list.add(new CountryModel("Denmark", "Copenhagen", ""));
 
       countries.setValue(list);
       countryLoadError.setValue(false);

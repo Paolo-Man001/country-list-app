@@ -57,7 +57,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
    }
 
 
-   //--- ViewHolder
+   //--- ViewHolder Class
    static class CountryViewHolder extends RecyclerView.ViewHolder {
 
       @BindView(R.id.imageView)
