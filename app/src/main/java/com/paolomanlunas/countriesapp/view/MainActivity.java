@@ -55,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
       countriesList.setLayoutManager(new LinearLayoutManager(this));
       countriesList.setAdapter(adapter);
 
+
+      // Swipe-to-REFRESH Layout
+      refreshLayout.setOnRefreshListener(() -> {
+         viewModel.refresh();                   // shows circular-refresh-animation
+         refreshLayout.setRefreshing(false);    // hides/stops circular-refresh-animation
+      });
+
       // Set Observers to ViewModel-LifeCycles
       observerViewModel();
    }
