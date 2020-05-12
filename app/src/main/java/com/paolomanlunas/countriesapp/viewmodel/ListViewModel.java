@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel;
 import com.paolomanlunas.countriesapp.model.CountriesService;
 import com.paolomanlunas.countriesapp.model.CountryModel;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

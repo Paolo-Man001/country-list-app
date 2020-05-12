@@ -78,6 +78,8 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
          countryName.setText(country.getCountryName());
          countryCapital.setText(country.getCapital());
 
+         // Use CircularProgressDrawable from Util.java:
+         Util.loadImage(countryImage, country.getFlag(), Util.getProgressDrawable(countryImage.getContext()));
       }
    }
 
