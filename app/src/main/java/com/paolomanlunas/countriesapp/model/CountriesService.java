@@ -19,7 +19,11 @@ public class CountriesService {
            .build()
            .create(CountriesApi.class);
 
-   //--- Constructor:
+   /* SINGLETON Creation:
+    *  A PRIVATE Constructor must be used to make this class
+    *  a SINGLETON - because we DO NOT want 'this' to be instantiated
+    *  by any other classes or codes - ONE(Single) Instance only!
+    * */
    private CountriesService() {
    }
    // Make this class as a SINGLETON:
