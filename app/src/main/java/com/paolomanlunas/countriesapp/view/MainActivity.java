@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-   @BindView(R.id.swipeRefreshLayout)
+   @BindView(R.id.swipeRefreshLayout)  // @BindView (From: 'Butterknife' lib)
    SwipeRefreshLayout refreshLayout;
 
    @BindView(R.id.countriesList)

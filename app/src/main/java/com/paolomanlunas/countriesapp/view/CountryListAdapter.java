@@ -60,7 +60,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
    //--- ViewHolder Class
    static class CountryViewHolder extends RecyclerView.ViewHolder {
 
-      @BindView(R.id.imageView)
+      @BindView(R.id.imageView)  // @BindView (From: 'Butterknife' lib)
       ImageView countryImage;
 
       @BindView(R.id.name)
@@ -69,6 +69,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
       @BindView(R.id.capital)
       TextView countryCapital;
 
+      //-- ViewHolder Constructor
       public CountryViewHolder(@NonNull View itemView) {
          super(itemView);
          ButterKnife.bind(this, itemView);
@@ -78,7 +79,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
          countryName.setText(country.getCountryName());
          countryCapital.setText(country.getCapital());
 
-         // Use CircularProgressDrawable from Util.java:
+         // Use Glide & CircularProgressDrawable from Util.java:
          Util.loadImage(countryImage, country.getFlag(), Util.getProgressDrawable(countryImage.getContext()));
       }
    }
