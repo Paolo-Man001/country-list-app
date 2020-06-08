@@ -26,6 +26,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    // Use ViewBinding Lib instead of Butterknife
+    viewBinding {
+        enabled = true
+    }
+
 }
 
 def lifecycleExtensionVersion = '1.1.1'
