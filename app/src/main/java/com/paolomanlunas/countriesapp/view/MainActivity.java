@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.paolomanlunas.countriesapp.R;
+import com.paolomanlunas.countriesapp.databinding.ActivityMainBinding;
 import com.paolomanlunas.countriesapp.model.CountryModel;
 import com.paolomanlunas.countriesapp.viewmodel.ListViewModel;
 
@@ -23,18 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-   @BindView(R.id.swipeRefreshLayout)  // @BindView (From: 'Butterknife' lib)
-   SwipeRefreshLayout refreshLayout;
 
-   @BindView(R.id.countriesList)
-   RecyclerView countriesList;
-
-   @BindView(R.id.list_error)
-   TextView listError;
-
-   @BindView(R.id.loading_view)
-   ProgressBar loadingView;
-
+   // Use ViewBinding
+   private ActivityMainBinding viewBinding;
 
    private ListViewModel viewModel;
    private CountryListAdapter adapter = new CountryListAdapter(new ArrayList<>());
@@ -43,23 +35,23 @@ public class MainActivity extends AppCompatActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
-
-      ButterKnife.bind(this);
+      viewBinding = ActivityMainBinding.inflate(getLayoutInflater());
+      View view = viewBinding.getRoot();
+      setContentView(view);
 
       // set 'this' as Lifecycle-Owner
       viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
       viewModel.refresh();
 
       // RecyclerView - LayoutManager
-      countriesList.setLayoutManager(new LinearLayoutManager(this));
-      countriesList.setAdapter(adapter);
+      viewBinding.countriesList.setLayoutManager(new LinearLayoutManager(this));
+      viewBinding.countriesList.setAdapter(adapter);
 
 
       // Swipe-to-REFRESH Layout
-      refreshLayout.setOnRefreshListener(() -> {
+      viewBinding.swipeRefreshLayout.setOnRefreshListener(() -> {
          viewModel.refresh();                   // shows circular-refresh-animation
-         refreshLayout.setRefreshing(false);    // hides/stops circular-refresh-animation
+         viewBinding.swipeRefreshLayout.setRefreshing(false);    // hides/stops circular-refresh-animation
       });
 
       // Set Observers to ViewModel-LifeCycles
@@ -70,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
       // Observe: List of Countries:
       viewModel.countries.observe(this, countryModels -> {
          if (countryModels != null) {
-            countriesList.setVisibility(View.VISIBLE);
+            viewBinding.countriesList.setVisibility(View.VISIBLE);
             adapter.updateCountries(countryModels);
          }
       });
@@ -78,18 +70,18 @@ public class MainActivity extends AppCompatActivity {
       // Observe: countryLoadError:
       viewModel.countryLoadError.observe(this, isError -> {
          if (isError != null) {
-            listError.setVisibility(isError ? View.VISIBLE : View.GONE);
+            viewBinding.listError.setVisibility(isError ? View.VISIBLE : View.GONE);
          }
       });
 
       // Observe: loading:
       viewModel.loading.observe(this, isLoading -> {
          if (isLoading != null) {
-            loadingView.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            viewBinding.loadingView.setVisibility(isLoading ? View.VISIBLE : View.GONE);
 
             if (isLoading) {
-               listError.setVisibility(View.GONE);
-               countriesList.setVisibility(View.GONE);
+               viewBinding.listError.setVisibility(View.GONE);
+               viewBinding.countriesList.setVisibility(View.GONE);
             }
          }
       });
