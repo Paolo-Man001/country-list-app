@@ -1,25 +1,19 @@
 package com.paolomanlunas.countriesapp.view;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.paolomanlunas.countriesapp.R;
 import com.paolomanlunas.countriesapp.databinding.ItemCountryBinding;
 import com.paolomanlunas.countriesapp.model.CountryModel;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-
-public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.CountryViewHolder> {
+public class CountryListAdapter extends
+        RecyclerView.Adapter<CountryListAdapter.CountryViewHolder> {
 
    private List<CountryModel> countries;
 
@@ -71,9 +65,9 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
       ItemCountryBinding viewBinding;
 
       //-- ViewHolder Constructor
-      public CountryViewHolder(@NonNull ItemCountryBinding binding) {
-         super(binding.getRoot());     // Get the Root Layout(view)
-         this.viewBinding = binding;   // Assign the same binding
+      public CountryViewHolder(@NonNull ItemCountryBinding viewBinding) {
+         super(viewBinding.getRoot());     // Get the Root Layout(view)
+         this.viewBinding = viewBinding;   // Assign the same binding
       }
 
       void bind(CountryModel country) {
