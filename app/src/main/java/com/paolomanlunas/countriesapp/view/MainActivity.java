@@ -1,27 +1,16 @@
 package com.paolomanlunas.countriesapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.paolomanlunas.countriesapp.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.paolomanlunas.countriesapp.databinding.ActivityMainBinding;
-import com.paolomanlunas.countriesapp.model.CountryModel;
 import com.paolomanlunas.countriesapp.viewmodel.ListViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 

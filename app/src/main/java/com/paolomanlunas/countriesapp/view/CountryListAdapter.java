@@ -65,9 +65,9 @@ public class CountryListAdapter extends
       ItemCountryBinding viewBinding;
 
       //-- ViewHolder Constructor
-      public CountryViewHolder(@NonNull ItemCountryBinding binding) {
-         super(binding.getRoot());     // Get the Root Layout(view)
-         this.viewBinding = binding;   // Assign the same binding
+      public CountryViewHolder(@NonNull ItemCountryBinding viewBinding) {
+         super(viewBinding.getRoot());     // Get the Root Layout(view)
+         this.viewBinding = viewBinding;   // Assign the same binding
       }
 
       void bind(CountryModel country) {
