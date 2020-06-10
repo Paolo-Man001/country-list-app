@@ -2,6 +2,7 @@ package com.paolomanlunas.countriesapp.di;
 
 
 import com.paolomanlunas.countriesapp.model.CountriesService;
+import com.paolomanlunas.countriesapp.viewmodel.ListViewModel;
 
 import dagger.Component;
 import dagger.Provides;
@@ -19,4 +20,6 @@ public interface ApiComponent {
    *     where we want to inject into (CountriesService)
    * */
    void inject(CountriesService service);
+
+   void inject(ListViewModel viewModel);
 }

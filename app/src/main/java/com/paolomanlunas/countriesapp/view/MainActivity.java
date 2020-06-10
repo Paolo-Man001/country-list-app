@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void observerViewModel() {
-      // Observe: List of Countries:
+      // OBSERVE: List of Countries:
       viewModel.countries.observe(this, countryModels -> {
          if (countryModels != null) {
             viewBinding.countriesList.setVisibility(View.VISIBLE);
@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
          }
       });
 
-      // Observe: countryLoadError:
+      // OBSERVE: countryLoadError:
       viewModel.countryLoadError.observe(this, isError -> {
          if (isError != null) {
             viewBinding.listError.setVisibility(isError ? View.VISIBLE : View.GONE);
          }
       });
 
-      // Observe: loading:
+      // OBSERVE: loading:
       viewModel.loading.observe(this, isLoading -> {
          if (isLoading != null) {
             viewBinding.loadingView.setVisibility(isLoading ? View.VISIBLE : View.GONE);

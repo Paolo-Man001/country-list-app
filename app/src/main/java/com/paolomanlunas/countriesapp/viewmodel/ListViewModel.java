@@ -3,10 +3,13 @@ package com.paolomanlunas.countriesapp.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.paolomanlunas.countriesapp.di.DaggerApiComponent;
 import com.paolomanlunas.countriesapp.model.CountriesService;
 import com.paolomanlunas.countriesapp.model.CountryModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -24,11 +27,23 @@ public class ListViewModel extends ViewModel {
    public MutableLiveData<Boolean> countryLoadError = new MutableLiveData<>();
    public MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
-   private CountriesService countriesService = CountriesService.getInstance();
-      // 'CompositeDisposable' allows us to intercept the countriesService to dispose its background-process(fetch JSON).
-      // Dispose process when finished fetching back-end data prevents memory-loss.
+   /* 'CompositeDisposable' allows us to intercept the countriesService to dispose its background-process(fetch JSON).
+       *  Dispose process when finished fetching back-end data prevents memory-loss.
+       */
    private CompositeDisposable disposable = new CompositeDisposable();
 
+   @Inject
+   public CountriesService countriesService;
+
+   //-- CONSTRUCTOR: for Dagger Injecting instance of 'CountriesService'
+   public ListViewModel() {
+      super();
+      // Inject 'CountriesService'
+      DaggerApiComponent.create().inject(this);
+   }
+
+
+   //-- METHODS:
    public void refresh() {
       fetchCountries();
    }
