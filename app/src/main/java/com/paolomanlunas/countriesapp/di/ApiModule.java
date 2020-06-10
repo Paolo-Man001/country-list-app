@@ -1,6 +1,7 @@
 package com.paolomanlunas.countriesapp.di;
 
 import com.paolomanlunas.countriesapp.model.CountriesApi;
+import com.paolomanlunas.countriesapp.model.CountriesService;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,6 +15,7 @@ public class ApiModule {
    // BASE URL
    private static final String BASE_URL = "https://raw.githubusercontent.com";
 
+   // Injects into 'CountriesService'
    @Provides
    public CountriesApi provideCountriesApi() {
       return new Retrofit.Builder()
@@ -22,5 +24,11 @@ public class ApiModule {
               .addCallAdapterFactory(RxJava2CallAdapterFactory.create())   // Converts the List<CountryModel> into an RxJava Component(Single) Observable
               .build()
               .create(CountriesApi.class);
+   }
+
+   // Injects into 'ListViewModel'
+   @Provides
+   public CountriesService provideCountriesService() {
+      return CountriesService.getInstance();
    }
 }
