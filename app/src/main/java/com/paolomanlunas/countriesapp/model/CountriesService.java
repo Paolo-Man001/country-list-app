@@ -1,6 +1,10 @@
 package com.paolomanlunas.countriesapp.model;
 
+import com.paolomanlunas.countriesapp.di.DaggerApiComponent;
+
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Single;
 import retrofit2.Retrofit;
@@ -8,16 +12,14 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CountriesService {
-   private static final String BASE_URL = "https://raw.githubusercontent.com";
 
    private static CountriesService instance;
 
-   private CountriesApi api = new Retrofit.Builder()
-           .baseUrl(BASE_URL)
-           .addConverterFactory(GsonConverterFactory.create())          // Converts JSON-res into Obj. of Country-MODEL we defined, as a LIST-of-CountryModel.
-           .addCallAdapterFactory(RxJava2CallAdapterFactory.create())   // Converts the List<CountryModel> into an RxJava Component(Single) Observable
-           .build()
-           .create(CountriesApi.class);
+   /* the Api Creation is done in ApiModule.
+   *  @Inject calls'inject()' from 'ApiComponent-Class'
+   * */
+   @Inject
+   public CountriesApi api;
 
    /* SINGLETON Creation:
     *  A PRIVATE Constructor must be used to make this class
@@ -25,7 +27,11 @@ public class CountriesService {
     *  by any other classes or codes - ONE(Single) Instance only!
     * */
    private CountriesService() {
+
+      // Perform and Complete the Actual Injection of the Generated-Api
+      DaggerApiComponent.create().inject(this);
    }
+
    // Make this class as a SINGLETON:
    public static CountriesService getInstance() {
       if (instance == null) {
