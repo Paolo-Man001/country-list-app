@@ -28,8 +28,8 @@ public class ListViewModel extends ViewModel {
    public MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
    /* 'CompositeDisposable' allows us to intercept the countriesService to dispose its background-process(fetch JSON).
-       *  Dispose process when finished fetching back-end data prevents memory-loss.
-       */
+    *  Dispose process when finished fetching back-end data prevents memory-loss.
+    */
    private CompositeDisposable disposable = new CompositeDisposable();
 
    @Inject
@@ -53,7 +53,7 @@ public class ListViewModel extends ViewModel {
       loading.setValue(true);       // ProgressBar START
       disposable.add(
               countriesService.getCountries()
-                      .subscribeOn(Schedulers.newThread()) // puts this process on a New Thread(background-process while waiting for API response)
+                      .subscribeOn(Schedulers.newThread())  // puts this process on a New Thread(background-process while waiting for API response)
                       .observeOn(AndroidSchedulers.mainThread())  // When the RESPONSE is available, put it on the Main-Thread-process, to UPDATE our view.
                       .subscribeWith(new DisposableSingleObserver<List<CountryModel>>() { // Subscribe to RxJava Observable-Component 'Single'
 
