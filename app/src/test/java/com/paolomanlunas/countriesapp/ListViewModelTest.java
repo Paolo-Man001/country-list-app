@@ -17,7 +17,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
@@ -58,9 +57,23 @@ public class ListViewModelTest {
 
       listViewModel.refresh();
 
-      // Test the expected values we get from the 3 LiveData parameters
+      // Test the expected values we get from the onSuccess() LiveData parameters
       Assert.assertEquals(1, listViewModel.countries.getValue().size());
       Assert.assertEquals(false, listViewModel.countryLoadError.getValue());
+      Assert.assertEquals(false, listViewModel.loading.getValue());
+   }
+
+   @Test
+   public void getCountriesFail() {
+
+      testSingle = Single.error(new Throwable());
+
+      Mockito.when(countriesService.getCountries()).thenReturn(testSingle);
+
+      listViewModel.refresh();
+
+      // Test the expected values we get from the onError() LiveData parameters
+      Assert.assertEquals(true, listViewModel.countryLoadError.getValue());
       Assert.assertEquals(false, listViewModel.loading.getValue());
    }
 
